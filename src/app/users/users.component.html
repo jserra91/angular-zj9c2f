@@ -1,0 +1,41 @@
+<!-- <li *ngFor="let user of users">
+    <a routerLink="/detail/{{user.id}}">
+      <span class="badge">{{user.id}}</span> {{user.name}}
+    </a>
+    <button type="button" class="delete" title="delete user"
+      (click)="edit(user)">x</button>
+</li> -->
+<div>
+<table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Options">
+        <th mat-header-cell *matHeaderCellDef> Options </th>
+        <td mat-cell *matCellDef="let row"> 
+            <button mat-button (click)="edit(row)">
+                <mat-icon>launch</mat-icon>
+            </button>
+        </td>
+      </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dateExpire">
+      <th mat-header-cell *matHeaderCellDef> Date Expire </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateExpire}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="enabled">
+      <th mat-header-cell *matHeaderCellDef> Enabled </th>
+      <td mat-cell *matCellDef="let element"> {{element.enabled}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+  <button mat-raised-button (click)="add()">
+    Add User
+</button>
